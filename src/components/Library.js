@@ -1,7 +1,7 @@
 import React from "react";
+import _ from 'lodash';
 
 import LibrarySong from "./LibrarySong";
-
 const Library = ({
   songs,
   setCurrentSong,
@@ -10,11 +10,13 @@ const Library = ({
   setSongs,
   libraryStatus,
 }) => {
+   
   return (
     <div className={`library ${libraryStatus ? "active-library" : " "}`}>
       <h2>Playlist</h2>
       <div className="library-songs">
-        {songs.map((song) => (
+        { 
+        songs.map((song) => (
           <LibrarySong
             songs={songs}
             cover={song.cover}

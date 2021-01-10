@@ -13,7 +13,7 @@ import { playAudio } from "./util";
 function App() {
   //Ref
   const audioRef = useRef(null);
-
+  const [isRandom, setIsRandom] = useState(false);
   const [songs, setSongs] = useState(chillhop());
   const [currentSong, setCurrentSong] = useState(songs[0]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -42,7 +42,11 @@ function App() {
   };
   const songEndHandler = async () => {
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
-    await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+    if (isRandom) {
+      await setCurrentSong(songs[Math.floor(Math.random() * songs.length)]);
+    }else {
+      await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+    }
     playAudio(isPlaying, audioRef);
     return;
   };
@@ -60,6 +64,8 @@ function App() {
         songs={songs}
         setSongs={setSongs}
         setCurrentSong={setCurrentSong}
+        isRandom={isRandom}
+        setIsRandom={setIsRandom}
       />
       <Library
         songs={songs}

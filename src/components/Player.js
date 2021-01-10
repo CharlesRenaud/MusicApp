@@ -6,6 +6,7 @@ import {
   faAngleRight,
   faPause,
   faVolumeDown,
+  faSpinner
 } from "@fortawesome/free-solid-svg-icons";
 
 import { playAudio } from "../util";
@@ -20,6 +21,8 @@ const Player = ({
   songs,
   setCurrentSong,
   setSongs,
+  isRandom,
+  setIsRandom,
 }) => {
   const [activeVolume, setActiveVolume] = useState(false);
   //UseEffect Update List
@@ -82,6 +85,19 @@ const Player = ({
       await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
       activeLibraryHandler(songs[(currentIndex - 1) % songs.length]);
     }
+    if (direction === "random") {
+      await setCurrentSong(songs[Math.floor(Math.random() * songs.length)])
+      activeLibraryHandler(songs[Math.floor(Math.random() * songs.length)])
+      playAudio(isPlaying, audioRef);
+      if(isRandom){
+        setIsRandom(false)
+        console.log(isRandom)
+      }else{
+        setIsRandom(true)
+        console.log(isRandom)
+      }
+      return
+    }
     if (isPlaying) audioRef.current.play();
   };
   const changeVolume = (e) => {
@@ -129,6 +145,12 @@ const Player = ({
           size="2x"
           icon={faAngleRight}
           onClick={() => skipTrackHandler("skip-forward")}
+        />
+         <FontAwesomeIcon
+         className={` ${isRandom ? "animate-flicker" : " "}`}
+          size="2x"
+          icon={faSpinner}
+          onClick={() => skipTrackHandler("random")}
         />
         <FontAwesomeIcon
           size="2x"
