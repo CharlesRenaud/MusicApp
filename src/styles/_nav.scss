@@ -45,11 +45,17 @@ nav {
   }
 
   .site-name{
-    font-size:1.1rem;
-  }
+      margin-top: 1rem;
+      font-size:3rem;
+      font-family: "Signature";
+      letter-spacing: 0.1rem;
+    }
   .site-name-dark{
-    font-size:1.1rem;
+    margin-top: 1rem;
+    font-size:3rem;
     color: rgb(221, 221, 221);
+    font-family: "Signature";
+    letter-spacing: 0.1rem;
   }
 
   .body-dark{
