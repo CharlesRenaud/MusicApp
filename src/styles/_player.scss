@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    height:100%;
   }
   
   .time-control {
@@ -19,6 +20,22 @@
   
     p {
       padding: 1rem;
+    }
+  }
+  .time-control-dark {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    input {
+      width: 100%;
+      -webkit-appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+  
+    p {
+      padding: 1rem;
+      color:rgb(221, 221, 221);
     }
   }
   .play-control {
@@ -51,6 +68,18 @@
     padding: 1rem;
     pointer-events: none;
   }
+  .animate-track-dark {
+    background: rgb(77, 77, 77);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(0%);
+    padding: 1rem;
+    pointer-events: none;
+  }
+  
   
   input[type="range"]:focus {
     outline: none;
@@ -63,19 +92,62 @@
   
   @media screen and (max-width: 768px) {
     .time-control {
-      width: 90%;
+      width: 95%;
     }
     .play-control {
-      width: 80%;
+      width: 85%;
     }
   }
 
-  .animate-flicker {
-    -webkit-animation:spin 4s linear infinite;
-    -moz-animation:spin 4s linear infinite;
-    animation:spin 4s linear infinite;
+  .random{
+    color: grey;
+    transition:1.5s;
+  }
 
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); };
+  .animate-flicker {
+    color : black !important;
+    transition:1s;
+  }
+  .animate-flicker-dark{
+    color:rgb(248, 245, 245) !important;
+  }
+  .range {
+    appearance:none;
+    width: 10rem;
+    height: .25rem;
+    outline: none;
+    border-radius: .25rem;
+    background-color:black;
+    &::-webkit-slider-thumb{
+      appearance: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: white;
+      border: .25rem solid black;
+      border-radius: 1rem;
+      cursor: pointer;
   }}
+  .range-dark {
+    appearance:none;
+    width: 10rem;
+    height: .25rem;
+    outline: none;
+    border-radius: .25rem;
+    background-color:rgb(204, 204, 204);
+    &::-webkit-slider-thumb{
+      appearance: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: rgb(248, 245, 245);
+      border: .25rem solid rgb(77, 77, 77);
+      border-radius: 1rem;
+      cursor: pointer;
+  }}
+
+
+  .skip-back-dark, .skip-forward-dark, .play-dark, .volume-dark{
+    color:rgb(204, 204, 204);
+  }
+  .random-dark{
+    color: rgba(204, 204, 204, 0.459)
+  }

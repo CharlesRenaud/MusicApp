@@ -3,12 +3,18 @@
     padding: 0;
     box-sizing: border-box;
   }
+
   
+ 
   body {
     font-family: "Lato", sans-serif;
   }
   .App {
     transition: all 0.5s ease;
+  }
+  .App-dark {
+    transition: all 0.5s ease;
+    background-color: rgb(30, 30, 30);
   }
   .library-active {
     margin-left: 30%;
@@ -24,6 +30,23 @@
   h4 {
     color: rgb(100, 100, 100);
     font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'Signature';
+     src : url('../fonts/Signature.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Signature2';
+     src : url('../fonts/Signature2.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Signature3';
+     src : url('../fonts/Signature3.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Signature4';
+     src : url('../fonts/Signature4.woff') format('woff');
   }
   
   @import "./song";

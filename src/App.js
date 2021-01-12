@@ -12,6 +12,7 @@ import { playAudio } from "./util";
 
 function App() {
   //Ref
+  const [isDark, setIsDark] = useState(false)
   const audioRef = useRef(null);
   const [isRandom, setIsRandom] = useState(false);
   const [songs, setSongs] = useState(chillhop());
@@ -24,6 +25,10 @@ function App() {
     volume: 0,
   });
   const [libraryStatus, setLibraryStatus] = useState(false);
+
+  const [lastSong, setLastSong] = useState({
+    id: 0,
+  })
 
   const timeUpdateHandler = (e) => {
     const current = e.target.currentTime;
@@ -40,20 +45,45 @@ function App() {
       volume: e.target.volume,
     });
   };
+
+  const activeLibraryHandler = (nextPrev) => {
+    const newSongs = songs.map((song) => {
+      if (song.id === nextPrev.id) {
+        return {
+          ...song,
+          active: true,
+        };
+      } else {
+        return {
+          ...song,
+          active: false,
+        };
+      }
+    });
+    setSongs(newSongs);
+  };
+   
   const songEndHandler = async () => {
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    var randomSong = songs[Math.floor(Math.random() * songs.length)];
+
     if (isRandom) {
-      await setCurrentSong(songs[Math.floor(Math.random() * songs.length)]);
+      await setCurrentSong(randomSong);
+      activeLibraryHandler(randomSong);
+
     }else {
       await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+      activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
     }
     playAudio(isPlaying, audioRef);
     return;
   };
+
+  
   return (
-    <div className={`App ${libraryStatus ? "library-active" : ""}`}>
-      <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
-      <Song isPlaying={isPlaying} currentSong={currentSong} />
+    <div className={`${isDark ? "App-dark" : "App "}  ${libraryStatus ? "library-active" : ""}`}>
+      <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} isDark={isDark} setIsDark={setIsDark} />
+      <Song isPlaying={isPlaying} currentSong={currentSong} isDark={isDark}/>
       <Player
         audioRef={audioRef}
         setIsPlaying={setIsPlaying}
@@ -66,6 +96,9 @@ function App() {
         setCurrentSong={setCurrentSong}
         isRandom={isRandom}
         setIsRandom={setIsRandom}
+        lastSong={lastSong}
+        setLastSong={setLastSong}
+        isDark={isDark}
       />
       <Library
         songs={songs}
@@ -74,6 +107,7 @@ function App() {
         isPlaying={isPlaying}
         setSongs={setSongs}
         libraryStatus={libraryStatus}
+        isDark={isDark}
       />
       <audio
         onLoadedMetadata={timeUpdateHandler}

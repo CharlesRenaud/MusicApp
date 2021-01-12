@@ -1,3 +1,4 @@
+
 .library {
     position: fixed;
     box-shadow: 2px 2px 50px rgb(221, 221, 221);
@@ -13,7 +14,32 @@
     opacity: 0;
   
     h2 {
-      padding: 2rem;
+      padding: 1.5rem;
+      font-family: 'Signature';
+      font-size:3rem;
+      letter-spacing: 0.13em;
+    }
+  }
+
+  .library-dark{
+    position: fixed;
+    box-shadow: 2px 2px 50px rgb(27, 27, 27);
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    overflow: scroll;
+    background: rgb(27, 27, 27);
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+    opacity: 0;
+  
+    h2 {
+      padding: 1.5rem;
+      font-family: 'Signature';
+      font-size:3rem;
+      letter-spacing: 0.13em;
+      color: rgb(221, 221, 221)
     }
   }
   
@@ -31,13 +57,40 @@
       background: #f1d9f3;
     }
   }
+  .library-song-dark {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem 1rem 2rem;
+    cursor: pointer;
+    transition: all 0.75s ease-out;
+  
+    img {
+      width: 20%;
+    }
+    &:hover {
+      background: rgba(83, 41, 81, 0.959);
+    }
+  }
+
+
   .song-description {
     padding-left: 1rem;
     h3 {
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
     h4 {
-      font-size: 0.7rem;
+      font-size: 0.8rem;
+    }
+  }
+  .song-description-dark {
+    padding-left: 1rem;
+    h3 {
+      font-size: 1.1rem;
+      color: rgb(221, 221, 221);
+    }
+    h4 {
+      font-size: 0.8rem;
+      color: rgb(190, 189, 189);
     }
   }
   
@@ -46,11 +99,12 @@
   * {
     scrollbar-width: thin;
     scrollbar-color: rgba(155, 155, 155, 0.7) transparent;
+    
   }
   
   /* Works on Chrome/Edge/Safari */
   *::-webkit-scrollbar {
-    width: 5px;
+    width: 6px;
   }
   *::-webkit-scrollbar-track {
     background: transparent;
@@ -60,9 +114,14 @@
     border-radius: 20px;
     border: transparent;
   }
+
+
   
   .selected {
     background: rgb(194, 208, 253);
+  }
+  .selected-dark{
+    background: rgba(129, 48, 125, 0.541);
   }
   .active-library {
     transform: translateX(0%);

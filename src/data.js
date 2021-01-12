@@ -301,9 +301,16 @@ function chillHop() {
   id: uuidv4(),
   active: false,
 },
-
-
-
+{
+  name: "Namaste",
+  cover:
+    "https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/98/11/a5/9811a5bc-af97-6dcc-59b4-e0fd11673355/artwork.jpg/1000x1000bb.webp",
+  artist: "Joe James",
+  audio: "https://media1.vocaroo.com/mp3/1jeMOFa7UeVj",
+  color: ["#fecedc", "#85667A"],
+  id: uuidv4(),
+  active: false,
+},
 
   ];
 }
